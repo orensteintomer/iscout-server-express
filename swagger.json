@@ -1,0 +1,134 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "iscout-server",
+    "description": "",
+    "version": "1.0"
+  },
+  "produces": ["application/json"],
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "paths": {
+    "/global/teams": {
+      "get": {
+        "x-swagger-router-controller": "global",
+        "operationId": "teams",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
+    "/player/description": {
+      "put": {
+        "x-swagger-router-controller": "player",
+        "operationId": "updateDescription",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
+    "/player/info": {
+      "get": {
+        "x-swagger-router-controller": "player",
+        "operationId": "getPlayerInfo",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
+    "/player/login": {
+      "get": {
+        "x-swagger-router-controller": "player",
+        "operationId": "login",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
+    "/player/picture": {
+      "post": {
+        "x-swagger-router-controller": "player",
+        "operationId": "uploadPicture",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
+    "/player/register": {
+      "post": {
+        "x-swagger-router-controller": "player",
+        "operationId": "register",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
+    "/player/search": {
+      "get": {
+        "x-swagger-router-controller": "player",
+        "operationId": "search",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
+    "/player/statistics": {
+      "get": {
+        "x-swagger-router-controller": "player",
+        "operationId": "getPlayerStatistics",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
+    "/player/video": {
+      "post": {
+        "x-swagger-router-controller": "player",
+        "operationId": "uploadVideo",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
+    "/scouter/login": {
+      "get": {
+        "x-swagger-router-controller": "scouter",
+        "operationId": "login",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
+    "/scouter/register": {
+      "post": {
+        "x-swagger-router-controller": "scouter",
+        "operationId": "register",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    }
+  }
+}

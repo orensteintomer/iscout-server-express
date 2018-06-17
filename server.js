@@ -1,103 +1,26 @@
 'use strict';
 
-const Hapi = require('hapi');
-const Promise = require('bluebird');
-const Package = require('./package.json');
-const Config = require('./lib/config');
-
-const healthCheck = function (server, cb) {
-
-    cb();
+const express = require('express');
+const cors = require('cors');
+const config = require('./lib/config');
+const boom = require('express-boom');
+const bodyParser = require('body-parser');
+const swagger = require('swagger-express-router');
+const swaggerDocument = require('./swagger.json');
+const useBasePath = true;
+const middlewareObj = {
+    'global': require('./lib/controllers/global/global'),
+    'player': require('./lib/controllers/player/player'),
+    'scouter': require('./lib/controllers/scouter/scouter')
 };
 
-//$lab:coverage:off$
-const getGoodReporters = () => {
+const app = express();
+app.use(cors());
+app.use(boom());
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));
+swagger.setUpRoutes(middlewareObj, app, swaggerDocument, useBasePath);
+app.listen(config.port, () => console.log(`Server listening on port ${config.port}`));
 
-    if (Config.isTesting) {
-        return {};
-    }
-
-    const reporters = {
-        console: [{
-            module: 'good-squeeze',
-            name: 'Squeeze',
-            args: [{ log: '*', request: '*', response: '*' }]
-        }, {
-            module: 'good-requests-filter',
-            args: [{
-                paths: [
-                    /\/_ah\/*/,
-                    /\/swaggerui\/*/
-                ]
-            }]
-        }, {
-            module: 'good-console'
-        }, {
-            module: 'good-separator'
-        }, 'stdout'],
-
-        error: [{
-            module: 'good-squeeze',
-            name: 'Squeeze',
-            args: [{ error: '*' }]
-        }, {
-            module: 'good-console'
-        }, {
-            module: 'good-separator'
-        }, 'stderr']
-    };
-
-    return reporters;
-};
-//$lab:coverage:on$
-
-module.exports = Promise.coroutine(function*() {
-
-    const server = new Hapi.Server();
-    server.connection({
-        port: Config.port,
-        routes: { cors: true },
-        labels: ['api']
-    });
-
-    yield Promise.promisify(server.register, { context: server })([
-        Config,
-        {
-            register: require('hapi-alive'),
-            options: {
-                path: '/_ah/health',
-                healthCheck
-            }
-        }, {
-            register: require('good'),
-            options: {
-                ops: {
-                    interval: 1000
-                },
-                reporters: getGoodReporters()
-            }
-        },
-        require('inert'),
-        require('vision'),
-        {
-            register: require('hapi-swagger'),
-            options: {
-                info: {
-                    title: 'iscout',
-                    version: Package.version
-                }
-            }
-        },
-        {
-            register: require('./lib/routes_settings'),
-            options: {
-                prefix: '/api',
-                playerPrefix: '/player',
-                scouterPrefix: '/scouter',
-                globalPrefix: '/global'
-            }
-        }
-    ]);
-
-    return server;
-});

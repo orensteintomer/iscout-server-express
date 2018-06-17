@@ -2,12 +2,12 @@
   "name": "tem-jobs-api",
   "private": true,
   "version": "0.1.1",
-  "main": "index.js",
+  "main": "server.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "lint": "eslint *.js lib/** cli/** test/**",
     "test": "mkdir -p coverage && ./node_modules/.bin/lab -a code -t 97 -l -L -r console -o stdout -r lcov -o coverage/lcov.info -r html -o coverage/index.html -m 5000"
   },
@@ -19,7 +19,11 @@
   "dependencies": {
     "async": "^2.6.0",
     "bluebird": "^3.4.3",
+    "body-parser": "^1.18.3",
     "boom": "^3.2.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-boom": "^2.0.0",
     "fast-crc32c": "^1.0.4",
     "good": "^7.0.1",
     "good-console": "^6.1.2",
@@ -35,6 +39,7 @@
     "mysql2": "^1.5.2",
     "promise-mysql": "^3.2.1",
     "request": "^2.86.0",
+    "swagger-express-router": "^1.0.0",
     "underscore": "^1.8.3",
     "util.promisify": "^1.0.0",
     "uuid": "^2.0.2",

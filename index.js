@@ -1,13 +1,12 @@
 'use strict';
-const Promise = require('bluebird');
 
 require('./server')()
     .then((server) => {
 
-        Promise.promisify(server.start, { context: server })()
+        server.listen(3000)
             .then(() => {
 
-                server.log([], `server running at ${server.info.uri}`);
+                server.log([], `server running`);
             })
             .catch((err) => {
 
