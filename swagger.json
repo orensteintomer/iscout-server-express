@@ -20,6 +20,17 @@
         }
       }
     },
+    "/global/deleteuser": {
+      "delete": {
+        "x-swagger-router-controller": "global",
+        "operationId": "deleteUser",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
     "/player/description": {
       "put": {
         "x-swagger-router-controller": "player",
