@@ -31,6 +31,17 @@
         }
       }
     },
+    "/global/usersdiversity": {
+      "get": {
+        "x-swagger-router-controller": "global",
+        "operationId": "getUsersDiversity",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
     "/global/deleteuser": {
       "delete": {
         "x-swagger-router-controller": "global",
