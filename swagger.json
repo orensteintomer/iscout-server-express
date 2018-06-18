@@ -20,6 +20,17 @@
         }
       }
     },
+    "/global/users": {
+      "get": {
+        "x-swagger-router-controller": "global",
+        "operationId": "searchUsers",
+        "tags": ["api"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+        }
+      }
+    },
     "/global/deleteuser": {
       "delete": {
         "x-swagger-router-controller": "global",
