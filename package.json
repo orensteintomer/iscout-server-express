@@ -22,7 +22,7 @@
     "body-parser": "^1.18.3",
     "boom": "^3.2.2",
     "cors": "^2.8.4",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-boom": "^2.0.0",
     "fast-crc32c": "^1.0.4",
     "good": "^7.0.1",
